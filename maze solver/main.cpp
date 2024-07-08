@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 // Define the directions for moving in the maze (right, down, left, up)
-const std::vector<std::pair<int, int>> directions = {
+const vector<pair<int, int>> directions = {
     {0, 1},  // Right
     {1, 0},  // Down
     {0, -1}, // Left
@@ -10,27 +12,27 @@ const std::vector<std::pair<int, int>> directions = {
 };
 
 // Function to print the maze
-void printMaze(const std::vector<std::vector<int>>& maze) {
+void printMaze(const vector<vector<int>>& maze) {
     for (const auto& row : maze) {
         for (int cell : row) {
             if (cell == -1) {
-                std::cout << "* "; // Path
+                cout << "* "; // Path
             }
             else {
-                std::cout << cell << " ";
+                cout << cell << " ";
             }
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
 // Function to check if a position is within the maze and not a wall
-bool isValid(const std::vector<std::vector<int>>& maze, int x, int y) {
+bool isValid(const vector<vector<int>>& maze, int x, int y) {
     return x >= 0 && x < maze.size() && y >= 0 && y < maze[0].size() && maze[x][y] == 0;
 }
 
 // Depth-First Search to solve the maze
-bool solveMaze(std::vector<std::vector<int>>& maze, int x, int y) {
+bool solveMaze(vector<vector<int>>& maze, int x, int y) {
     if (maze[x][y] == 2) {
         return true; // Reached the goal
     }
@@ -54,30 +56,30 @@ bool solveMaze(std::vector<std::vector<int>>& maze, int x, int y) {
 
 int main() {
     int rows, cols;
-    std::cout << "Enter the number of rows and columns in the maze: ";
-    std::cin >> rows >> cols;
+    cout << "Enter the number of rows and columns in the maze: ";
+    cin >> rows >> cols;
 
-    std::vector<std::vector<int>> maze(rows, std::vector<int>(cols));
+    vector<vector<int>> maze(rows, vector<int>(cols));
 
-    std::cout << "Enter the maze (0 for path, 1 for wall, 2 for goal):" << std::endl;
+    cout << "Enter the maze (0 for path, 1 for wall, 2 for goal):" << endl;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            std::cin >> maze[i][j];
+            cin >> maze[i][j];
         }
     }
 
     int startX, startY;
-    std::cout << "Enter the starting position (row and column): ";
-    std::cin >> startX >> startY;
+    cout << "Enter the starting position (row and column): ";
+    cin >> startX >> startY;
 
-    std::cout << "Maze before solving:\n";
+    cout << "Maze before solving:\n";
     printMaze(maze);
 
     if (solveMaze(maze, startX, startY)) {
-        std::cout << "Path to the goal found:\n";
+        cout << "Path to the goal found:\n";
     }
     else {
-        std::cout << "No path to the goal exists.\n";
+        cout << "No path to the goal exists.\n";
     }
 
     printMaze(maze);
