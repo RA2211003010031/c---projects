@@ -41,6 +41,3 @@ You start from a given position and attempt to find a path to the goal, avoiding
 1. Compile the `maze_solver.cpp` file using a C++ compiler.
 2. Execute the compiled program.
 3. Follow the on-screen prompts to input the maze dimensions, layout, and starting position.
-
-## Example
-
